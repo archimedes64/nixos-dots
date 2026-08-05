@@ -18,8 +18,8 @@
 	];
 
 		
-	home.packages = [
-		pkgs.neovim	
-		pkgs.wl-clipboard
-	};
+	home.packages = with pkgs; [
+		neovim	
+		wl-clipboard
+	];
 }
