@@ -14,24 +14,12 @@
 	imports = [
 	    ./apps/alacritty.nix
 	    ./apps/swayfx/swayfx.nix
+	    ./apps/git.nix
 	];
 
 		
 	home.packages = [
 		pkgs.neovim	
 		pkgs.wl-clipboard
-		pkgs.gh
-	];
-
-	programs.git = {
-	    enable = true;
-	    settings = {
-	      user = {
-		name  = "archimedes";
-		email = "archimedesow@gmail.com";
-	      };
-	      init.defaultBranch = "main";
-	    };
-	  };
-
+	};
 }
