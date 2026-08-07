@@ -19,11 +19,6 @@
 
   security.polkit.enable = true;
 
-  programs.sway = {
-	enable = true;
-	package = pkgs.swayfx;
-  };
-
   services.pipewire = {
   	enable = true;	
 	pulse.enable = true;
@@ -37,7 +32,7 @@
 
   users.users."${constants.user.username}" = {
     isNormalUser = true;
-    description = "Main user account.";
+    description ="Main user account.";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
   };
