@@ -8,19 +8,22 @@
 
  options.usr.sway.enable =  lib.mkEnableOption "Sway";
 
- config.wayland.windowManager.sway = lib.mkIf config.usr.sway.enable {
-  enable = true;
-  
-  wrapperFeatures.gtk = true;
-  
-  config = rec {
-   modifier = "Mod4";
-   terminal = "alacritty";
-   input."*".xkb_options = "caps:swapescape";
+ config = lib.mkIf config.usr.sway.enable {
+   wayland.windowManager.sway = {
+     enable = true;
+     
+     systemd.variables = ["--all"];
 
-  };
+     wrapperFeatures.gtk = true;
+     
+     config = rec {
+      modifier = "Mod4";
+      terminal = "alacritty";
+      input."*".xkb_options = "caps:swapescape";
 
-  
+     };
+   };
+   home.packages = [ pkgs.swaybg ];
  };
 
 }

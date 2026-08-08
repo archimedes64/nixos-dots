@@ -1,4 +1,7 @@
 { config, pkgs, constants, ... }: 
+let
+  colorScheme = constants.user.colorScheme;
+in
 {
 	home.username = constants.user.username;
 	home.homeDirectory = constants.user.homeDir;
@@ -11,12 +14,33 @@
 	};
 
 
-	imports = [
-	    ./apps/alacritty.nix
-	    ./apps/swayfx/swayfx.nix
-	    ./apps/git.nix
-	];
+	usr.sway = {
+	  enable = true;
 
+	  style = {
+	    colors = {
+	      focused = colorScheme.rose;
+	      unfocused = colorScheme.highlights.med;
+	    };
+
+	    gapsInner = 25;
+	    gapsOuter = 30;
+	    border = 1;
+	  };
+
+	};
+
+	usr.alacritty = {
+	  enable = true; 
+	  colorScheme = colorScheme;
+	};
+	
+	usr.git = {
+	  enable = true;
+	  name = "archimedes64";
+	  githubUsername = "archimedes64";
+	  email = "archimedesow@gmail.com";
+	};
 		
 	home.packages = with pkgs; [
 		neovim	
