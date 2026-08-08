@@ -17,6 +17,7 @@ in
 	usr.sway = {
 	  enable = true;
 	  enableRofi = true;
+	  swayosd.enable = true;
 
 	  style = {
 	    colors = {
