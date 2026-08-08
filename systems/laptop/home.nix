@@ -16,6 +16,7 @@ in
 
 	usr.sway = {
 	  enable = true;
+	  enableRofi = true;
 
 	  style = {
 	    colors = {
@@ -28,6 +29,22 @@ in
 	    border = 3;
 	  };
 
+	};
+
+	usr.rofi = {
+	  enable = true;
+	  colors = {
+	    background = colorScheme.surface;
+	    surface = colorScheme.overlay;
+	    foreground = colorScheme.text;
+	    muted = colorScheme.muted;
+	    highlight = colorScheme.gold;
+	    mainAccent = colorScheme.rose;
+	    extraAccent1 = colorScheme.pine;
+	    extraAccent2 = colorScheme.iris;
+	  };
+
+	  font = "Jetbrains Mono 12";
 	};
 
 	usr.alacritty = {
