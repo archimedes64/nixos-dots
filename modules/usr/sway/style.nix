@@ -31,12 +31,12 @@ in
   };
 
   config.wayland.windowManager.sway.config = {
-    fonts.size = 0.001; 
+    window = { titlebar = false; }
+        // (ifSet cfg.border  { border = cfg.border; });
 
     gaps = (ifSet cfg.gapsInner  { inner = cfg.gapsInner; })
         // (ifSet cfg.gapsOuter  { outer = cfg.gapsOuter; });
 
-    window = ifSet cfg.border  { border = cfg.border; };     
 
     colors = (ifSet cfg.colors.focused { 
       focused = createColorSet cfg.colors.focused; 

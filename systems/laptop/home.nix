@@ -25,7 +25,7 @@ in
 
 	    gapsInner = 25;
 	    gapsOuter = 30;
-	    border = 1;
+	    border = 3;
 	  };
 
 	};
