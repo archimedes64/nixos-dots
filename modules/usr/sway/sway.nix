@@ -28,7 +28,7 @@
         modifier = config.wayland.windowManager.sway.config.modifier;
       in 
       {
-        "${modifier}+q" = "exec --no-startup-id rofi --show drun -show-icons";
+        "${modifier}+q" = "exec --no-startup-id rofi -show drun -show-icons";
       }));
 
      };

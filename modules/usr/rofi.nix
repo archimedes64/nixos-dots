@@ -3,26 +3,29 @@ let
   mkOptionalOption = helpers.mkOptionalOption;
   notNull = helpers.notNull;
   colorDescription = "A color (hex code).";
-  colorOption = mkOption {
+  colorOption = lib.mkOption {
     type = lib.types.str;
     description = colorDescription;
   };
-  cfg = options.usr.rofi;
+  cfg = config.usr.rofi;
 in
 {
  options.usr.rofi = with lib; {
    enable = mkEnableOption "rofi";
+
    colors = mkOption {
      description = "the colors to be used in the rofi config";
      type = with types; submodule {
-       background = colorOption;
-       surface = colorOption;
-       foreground = colorOption;
-       muted = colorOption;
-       highlight = colorOption;
-       mainAccent = colorOption;
-       extraAccent1 = mkOptionalOption types.str colorDescription;
-       extraAccent2 = mkOptionalOption types.str colorDescription;
+       options = {
+         background = colorOption;
+         surface = colorOption;
+         foreground = colorOption;
+         muted = colorOption;
+         highlight = colorOption;
+         mainAccent = colorOption;
+         extraAccent1 = mkOptionalOption str colorDescription;
+         extraAccent2 = mkOptionalOption str colorDescription;
+       };
      };
        
    };
@@ -38,13 +41,13 @@ in
    let
    colors = cfg.colors;
 
-   colors.extraAccent1 = if notNull cfg.colors.extraAccent1
+   extraAccent1 = if notNull cfg.colors.extraAccent1
    then cfg.colors.extraAccent1
-   else mainAccent;
+   else colors.mainAccent;
 
-   colors.extraAccent2 = if notNull cfg.colors.extraAccent2
+   extraAccent2 = if notNull cfg.colors.extraAccent2
    then cfg.colors.extraAccent2
-   else mainAccent;
+   else colors.mainAccent;
    in
    {
      enable = true;
@@ -55,10 +58,10 @@ in
      in 
      {
        "*" = {
-         active-background = mkLiteral colors.extraAccent1;
+         active-background = mkLiteral extraAccent1;
          active-foreground = mkLiteral colors.foreground;
 
-         urgent-background = mkLiteral colors.extraAccent2;
+         urgent-background = mkLiteral extraAccent2;
          urgent-foreground = mkLiteral colors.foreground;
        };
 
@@ -90,7 +93,7 @@ in
 	 text-color = mkLiteral colors.foreground;
        };
 
-       "#inputbar" {
+       "#inputbar" = {
          spacing = mkLiteral "2px";
 	 padding = mkLiteral "4px 6px";
 	 border-top = mkLiteral "1px dash 0px 0px";
@@ -100,24 +103,12 @@ in
        "#prompt" = { text-color = colors.highlight; };
        "#textbox" = {
          text-color = mkLiteral colors.foreground;
-	 background-color transparent;
+	 background-color = mkLiteral "transparent";
 	 border = 0;
 	 cursor-color = colors.highlight;
        };
 
-
-
-     };
+      };
+    };
+  };
 }
-
-
-
-
-
-   };
- };
-
- 
-
-
-
