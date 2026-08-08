@@ -33,7 +33,7 @@
   users.users."${constants.user.username}" = {
     isNormalUser = true;
     description ="Main user account.";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" ];
     packages = with pkgs; [];
   };
 
