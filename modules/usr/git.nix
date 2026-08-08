@@ -39,14 +39,15 @@ in
           email = cfg.email;
         };
         init.defaultBranch = "main";
+
+        credential = {
+          helper = "manager";
+          "https://github.com".username = cfg.githubUsername;
+          credentialStore = "cache";
+          enable = true;
+        }; # https://discourse.nixos.org/t/git-credential-manager-on-nixos/25742/6
       };
 
-      extraConfig.credential = {
-        helper = "manager";
-        "https://github.com".username = cfg.githubUsername;
-        credentialStore = "cache";
-        enable = true;
-      }; # https://discourse.nixos.org/t/git-credential-manager-on-nixos/25742/6
     };
   };
 }
