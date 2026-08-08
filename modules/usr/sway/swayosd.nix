@@ -20,8 +20,7 @@ in
      topMargin = 0.9;
    };
 
-   wayland.windowManager.sway.config = lib.mkMerge {
-     keybindings = {
+   wayland.windowManager.sway.config.keybindings = lib.mkOptionDefault {
        # Audio Volume Controls (Sink - Output)
        "XF86AudioRaiseVolume" = "exec swayosd-client --output-volume raise";
        "XF86AudioLowerVolume" = "exec swayosd-client --output-volume lower";
@@ -42,7 +41,6 @@ in
        "XF86AudioNext" = "exec swayosd-client --playerctl next";
        "XF86AudioPrev" = "exec swayosd-client --playerctl prev";
      };
-   };
- };
+  };
 }
 

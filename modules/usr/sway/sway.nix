@@ -1,4 +1,8 @@
-{ config, pkgs, constants, lib, ... }: {
+{ config, pkgs, constants, lib, ... }: 
+let
+  mod = "Mod4";
+in
+{
 
  imports = [
    ./style.nix
@@ -18,17 +22,14 @@
 
      wrapperFeatures.gtk = true;
      
-     config = rec {
-      modifier = "Mod4";
+     config = {
+      modifier = mod;
       terminal = "alacritty";
 
       input."*".xkb_options = "caps:swapescape";
       keybindings = (lib.mkIf config.usr.sway.enableRofi 
-      (let
-        modifier = config.wayland.windowManager.sway.config.modifier;
-      in 
-      {
-        "${modifier}+q" = "exec --no-startup-id rofi -show drun -show-icons";
+      (lib.mkOptionDefault {
+        "${mod}+q" = "exec --no-startup-id rofi -show drun -show-icons";
       }));
 
      };
@@ -36,4 +37,4 @@
    home.packages = [ pkgs.swaybg ];
  };
 
-}
+	}
