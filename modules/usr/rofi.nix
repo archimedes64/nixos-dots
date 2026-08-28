@@ -18,8 +18,7 @@ in
      type = with types; submodule {
        options = {
          background = colorOption;
-         surface = colorOption;
-         foreground = colorOption;
+         surface = colorOption; foreground = colorOption;
          muted = colorOption;
          highlight = colorOption;
          mainAccent = colorOption;
@@ -58,55 +57,96 @@ in
      in 
      {
        "*" = {
+	 background-color = mkLiteral colors.background;
+
          active-background = mkLiteral extraAccent1;
          active-foreground = mkLiteral colors.foreground;
 
          urgent-background = mkLiteral extraAccent2;
          urgent-foreground = mkLiteral colors.foreground;
+	 text-color = mkLiteral colors.foreground;
+       };
+
+       "#textbox" = {
+         text-color = mkLiteral colors.foreground;
+	 border = mkLiteral "3px";
+	 border-color = mkLiteral colors.mainAccent;
+	 cursor-color = mkLiteral colors.highlight;
        };
 
        "window" = {
-         background-color = mkLiteral colors.background;
-	 border = 2;
+         background-color = mkLiteral "transparent";
+	 border = 3;
 	 border-color = mkLiteral colors.mainAccent;
-	 border-radius = 10;
-	 padding = mkLiteral "6px";
+	 border-radius = 6;
+	 padding = 0;
 	 width = mkLiteral "40%";
        };
 
        "#message" = {
 	 padding = mkLiteral "3px 6px";
          border = mkLiteral "1px dash 0px 0px";
-         text-color = mkLiteral colors.mainAccent;
+         text-color = mkLiteral colors.foreground;
 	 background-color = mkLiteral colors.surface;
        };
 
        "#listview" = {
-         lines = 8;
+	 fixed-height = mkLiteral "0px";
+	 background-color = mkLiteral colors.background;
+	 border = mkLiteral "3px 0px 0px 0px";
+	 border-radius = 1;
+	 border-color = mkLiteral colors.mainAccent;
 	 spacing = mkLiteral "2px";
-	 padding = mkLiteral "2px";
-	 scrollbar = false;
+	 padding = mkLiteral "2px 0px 0px";
        };
 
+
        "#element" = {
-         padding = mkLiteral "4px 6px";
+         padding = mkLiteral "2px 4px";
 	 text-color = mkLiteral colors.foreground;
+       };
+       "#element selected" = {
+	 border-size = mkLiteral "1px";
+         border-color = mkLiteral colors.mainAccent;
        };
 
        "#inputbar" = {
-         spacing = mkLiteral "2px";
-	 padding = mkLiteral "4px 6px";
+         spacing = mkLiteral "1px";
+	 text-color = mkLiteral colors.foreground;
+	 padding = mkLiteral "0px -0.4%";
 	 border-top = mkLiteral "1px dash 0px 0px";
-	 border-color = mkLiteral colors.surface;
+	 border-color = mkLiteral colors.mainAccent;
+	 children = mkLiteral " [ prompt, case-indicator, textbox-prompt-colon, entry ]";
        };
 
-       "#prompt" = { text-color = colors.highlight; };
-       "#textbox" = {
-         text-color = mkLiteral colors.foreground;
-	 background-color = mkLiteral "transparent";
-	 border = 0;
-	 cursor-color = colors.highlight;
+       "#prompt" = { 
+         text-color = colors.background; 
+	 enabled = false;
+	 spacing = 0;
        };
+
+       "#case-indicator" = {
+         spacing = 0;
+	 text-color = mkLiteral colors.foreground;
+       };
+
+       "#textbox-prompt-colon" = {
+	 expand = false;
+	 str =  "";
+	 spacing = 0;
+	 margin = mkLiteral "0px 0px 0px 0px";
+         text-color = mkLiteral colors.foreground;
+       };
+
+       "#entry" = {
+         spacing = 0;
+	 text-color = mkLiteral colors.mainAccent;
+	 hide-cursor-on-empty = true;
+	 cursor-color = mkLiteral colors.background;
+       };
+
+
+
 
       };
     };
