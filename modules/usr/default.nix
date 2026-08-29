@@ -5,5 +5,6 @@
     ./git.nix
     ./sway
     ./rofi.nix
+    ./cursor.nix
   ];
 }

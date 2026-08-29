@@ -59,9 +59,12 @@ in
 	  githubUsername = "archimedes64";
 	  email = "archimedesow@gmail.com";
 	};
+
+	usr.cursor.enable = true;
 		
 	home.packages = with pkgs; [
 		neovim	
 		wl-clipboard
 	];
+
 }
