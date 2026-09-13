@@ -60,7 +60,7 @@ in
       placeholder     = createColorSet cfg.colors.unfocused;
     });
 
-    bars = (lib.mkIf cfg.swayBar.enable [{
+    bars = (if cfg.swayBar.enable then [{
       colors = (ifSet cfg.swayBar.colors.background {
         background = cfg.swayBar.colors.background;
       })
@@ -91,7 +91,7 @@ in
       statusCommand = "${pkgs.i3status}/bin/i3status";
       position = "top";
 
-    }]);
+    }] else []);
 
 
 
