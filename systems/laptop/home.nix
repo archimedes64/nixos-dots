@@ -25,6 +25,19 @@ in
 	      unfocused = colorScheme.highlights.med;
 	    };
 
+	    swayBar = {
+	      enable = true;
+	      colors = {
+	      	background = "${colorScheme.surface}";
+		statusline = colorScheme.text;
+		separator = colorScheme.text;
+		good = colorScheme.pine;
+		degraded = colorScheme.iris;
+		bad = colorScheme.love;
+	      };
+
+	    };
+
 	    gapsInner = 25;
 	    gapsOuter = 30;
 	    border = 3;
@@ -61,6 +74,8 @@ in
 	};
 
 	usr.cursor.enable = true;
+
+	# usr.librewolf.enable = false;
 		
 	home.packages = with pkgs; [
 		neovim	
